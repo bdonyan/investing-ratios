@@ -1,0 +1,26 @@
+2024-06-18 16:03:16,703 - INFO - Scraping page 1
+2024-06-18 16:03:17,241 - INFO - No sign-up pop-up found or failed to close it.
+2024-06-18 16:03:17,760 - INFO - No general pop-up found or failed to close it.
+2024-06-18 16:03:18,276 - INFO - No sidebar overlay lightbox found or failed to remove it.
+2024-06-18 16:03:18,311 - INFO - Extracting company links from current page
+2024-06-18 16:03:18,842 - INFO - No sign-up pop-up found or failed to close it.
+2024-06-18 16:03:19,360 - INFO - No general pop-up found or failed to close it.
+2024-06-18 16:03:19,875 - INFO - No sidebar overlay lightbox found or failed to remove it.
+2024-06-18 16:03:25,716 - INFO - Clicked next page arrow.
+2024-06-18 16:03:26,717 - INFO - Scraping page 2
+2024-06-18 16:03:27,254 - INFO - No sign-up pop-up found or failed to close it.
+2024-06-18 16:03:47,988 - INFO - Scraping page 1
+2024-06-18 16:03:48,565 - INFO - No sign-up pop-up found or failed to close it.
+2024-06-18 16:03:49,296 - INFO - No general pop-up found or failed to close it.
+2024-06-18 16:05:29,649 - INFO - Scraping page 1
+2024-06-18 16:05:30,191 - INFO - No sign-up pop-up found or failed to close it.
+2024-06-18 16:05:30,709 - INFO - No general pop-up found or failed to close it.
+2024-06-18 16:05:31,228 - INFO - No sidebar overlay lightbox found or failed to remove it.
+2024-06-18 16:05:31,271 - INFO - Extracting company links from current page
+2024-06-18 16:05:31,799 - INFO - No sign-up pop-up found or failed to close it.
+2024-06-18 16:05:32,315 - INFO - No general pop-up found or failed to close it.
+2024-06-18 16:05:32,833 - INFO - No sidebar overlay lightbox found or failed to remove it.
+2024-06-18 16:05:38,382 - INFO - Clicked next page arrow.
+2024-06-18 16:05:39,383 - INFO - Scraping page 2
+2024-06-18 16:05:39,918 - INFO - No sign-up pop-up found or failed to close it.
+2024-06-18 16:23:14,338 - INFO - Company data saved to company_links.csv
