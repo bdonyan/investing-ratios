@@ -66,4 +66,4 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 ## Contact
 
-For any inquiries or issues, please contact [Your Name](mailto:your.email@example.com).
+For any inquiries or issues, please contact [Brandon Yan](mailto:branyan@seas.upenn.edu).
