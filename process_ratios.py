@@ -5,15 +5,21 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 import logging
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime
 
+# Setup Chrome options to ignore SSL certificate errors
+options = webdriver.ChromeOptions()
+options.add_argument('--ignore-certificate-errors')
+options.add_argument('--ignore-ssl-errors')
+
+# Setup the Chrome driver with the options
 service = Service('chromedriver.exe')
-driver = webdriver.Chrome(service=service)
+driver = webdriver.Chrome(service=service, options=options)
 driver.maximize_window()
 
 # Function to extract ratios data 
-def extract_ratios_data(url):
-    print(url)
+def extract_ratios_data(url, count):
+    print(f"{count}. {url} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     driver.get(url)
     try:
         WebDriverWait(driver, 40).until(
@@ -45,25 +51,28 @@ def extract_ratios_data(url):
     
     return ratios
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
     df = pd.read_csv('company_links.csv')
     all_data = df.to_dict('records')
     final_data = []
 
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        futures = {executor.submit(extract_ratios_data, data["URL"]): data for data in all_data}
-        for future in as_completed(futures):
-            data = futures[future]
-            try:
-                ratios = future.result()
-                row = {"Company Name": data["Company Name"], "Industry": data["Industry"]}
-                for ratio_name, values in ratios.items():
-                    row[f"{ratio_name} (Company)"] = values['Company']
-                    row[f"{ratio_name} (Industry)"] = values['Industry']
-                final_data.append(row)
-            except Exception as e:
-                logging.error(f"Error processing data for {data['Company Name']}: {e}")
-
+    for count, data in enumerate(all_data, start=1):
+        url = data["URL"]
+        ratios = extract_ratios_data(url, count)
+        row = {"Company Name": data["Company Name"], "Industry": data["Industry"]}
+        for ratio_name, values in ratios.items():
+            row[f"{ratio_name} (Company)"] = values['Company']
+            row[f"{ratio_name} (Industry)"] = values['Industry']
+        final_data.append(row)
+    
     df_final = pd.DataFrame(final_data)
+
+    # Remove the 3rd and 4th columns from the output DataFrame if they exist
+    if len(df_final.columns) > 4:
+        df_final.drop(columns=[df_final.columns[2], df_final.columns[3]], inplace=True)
+    
     df_final.to_csv('company_ratios.csv', index=False)
     print("Data saved to company_ratios.csv")
+
+# Close the driver
+driver.quit()
